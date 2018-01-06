@@ -6,18 +6,18 @@
     <description>Recent content in Posts on lucasmoura&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Jan 2018 16:39:53 -0200</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jan 2018 22:55:14 -0200</lastBuildDate>
     
 	<atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>My First Post</title>
-      <link>http://example.org/posts/my-first-post/</link>
-      <pubDate>Fri, 05 Jan 2018 16:39:53 -0200</pubDate>
+      <title>Automatic Star Rating for Movie Reviews - Part 1</title>
+      <link>http://example.org/posts/automatic-star-rating-for-movie-reviews-part-1/</link>
+      <pubDate>Fri, 05 Jan 2018 22:55:14 -0200</pubDate>
       
-      <guid>http://example.org/posts/my-first-post/</guid>
-      <description>Testing</description>
+      <guid>http://example.org/posts/automatic-star-rating-for-movie-reviews-part-1/</guid>
+      <description>One of my favorite hobbies in the world is watching movies. Usually, if I stay one week without watching a new movie I feel that something is wrong, After watching a movie, I almost read reviews from different critics on the Internet, to look into different opinions about the movie I just saw or just to learn something new about movie in general. Most of the critics that I read rate their movies using the &amp;ldquo;star&amp;rdquo; rating, where a movie get a rate ranging from one to five stars.</description>
     </item>
     
   </channel>
