@@ -1,0 +1,181 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>lucasmoura&#39;s blog</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Lucas Moura" />
+  <meta name="generator" content="Hugo 0.26" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">lucasmoura&rsquo;s blog</a>
+            </h1>
+
+      <ul id="social-media">
+         
+        <li><a href="https://www.linkedin.com/in/lucas-albuquerque-medeiros-de-moura-941644152"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://github.com/lucasmoura"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><em>Another variable in the Deep Learning hyperspace</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>AppRecommender a Package Recommender System</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2016-08-01T00:00:00Z">Aug 1, 2016</time>
+        </li>
+        
+        
+
+        
+
+        <li>2 min read</li>
+    </ul>
+</aside>
+    
+
+    <p>Hello, my name is Lucas Moura and this post will present AppRecommender. This
+project is a package recommender system for Debian systems. The intent of this
+application is to look for packages that users have already installed in their
+system and recommend new useful packages based on them. This approach is
+similar as the one seen on Netflix or Amazon, where the movies or goods that a
+user has already seen determine other items that will be recommended.</p>
+
+<p>This application is already packaged and can be found with the name
+apprecommender on Debian stretch. Currently, AppRecommender does
+recommend a variety of packages, ranging from application to libraries.
+However, the next release will focus more on the application packages.</p>
+
+<p>In the near feature, I will also ask the community for some help on evaluating
+the application, specially to evaluate if the application is providing useful
+recommendations.</p>
+
+<p>To anyone interested on the project, you can look at its main repository in
+the following link:</p>
+
+<p><a href="https://gitlab.com/AppRecommender/AppRecommender">https://gitlab.com/AppRecommender/AppRecommender</a></p>
+
+<p>And if you have any ideas for the project or any doubt about it, please send
+me an email:</p>
+
+<p>lucas.moura128@gmail.com</p>
+
+<p>Or contact my at OFTC irc network on channels like #debian-soc or #debian-devel, my nickname there is lucasmoura.
+It will be really cool to hear any input about the application and discuss some ideas with anyone interested on it :)</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        
+        <li>
+            <a href="https://lucasmoura.github.io/blog/2016/08/01/apprecommender-my-google-summer-of-code-project/">AppRecommender My Google Summer of Code Project <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments-o"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'https-lucasmoura-github-io';
+            var disqus_button = document.getElementById("show-comments");
+
+            disqus_button.style.display = "";
+            disqus_button.addEventListener("click", disqus, false);
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://lucasmoura.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+</body>
+
+</html>

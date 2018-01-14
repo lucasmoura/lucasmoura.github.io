@@ -30,5 +30,24 @@
 Debian Working with Debian was also another high point of the my Google Summer of Code experience.</description>
     </item>
     
+    <item>
+      <title>AppRecommender My Google Summer of Code Project</title>
+      <link>https://lucasmoura.github.io/blog/2016/08/01/apprecommender-my-google-summer-of-code-project/</link>
+      <pubDate>Mon, 01 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasmoura.github.io/blog/2016/08/01/apprecommender-my-google-summer-of-code-project/</guid>
+      <description>AppRecommender is a package recommender system for Debian. This project is also one of the Debian projects that is being worked on by some Google Summer of Code students. As one of these students, I will now present what my Google Summer of Code project is and what I have achieved so far.
+First of all, my project is to allow AppStream to parse recommendations provided by AppRecommender. AppStream is a project that aims at providing cross-distribution metadata about components that can be installed by an user.</description>
+    </item>
+    
+    <item>
+      <title>AppRecommender a Package Recommender System</title>
+      <link>https://lucasmoura.github.io/blog/2016/08/01/apprecommender-a-package-recommender-system/</link>
+      <pubDate>Mon, 01 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasmoura.github.io/blog/2016/08/01/apprecommender-a-package-recommender-system/</guid>
+      <description>Hello, my name is Lucas Moura and this post will present AppRecommender. This project is a package recommender system for Debian systems. The intent of this application is to look for packages that users have already installed in their system and recommend new useful packages based on them. This approach is similar as the one seen on Netflix or Amazon, where the movies or goods that a user has already seen determine other items that will be recommended.</description>
+    </item>
+    
   </channel>
 </rss>
