@@ -1,0 +1,314 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>lucasmoura&#39;s blog</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Lucas Moura" />
+  <meta name="generator" content="Hugo 0.26" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">lucasmoura&rsquo;s blog</a>
+            </h1>
+
+      <ul id="social-media">
+         
+        <li><a href="https://www.linkedin.com/in/lucas-albuquerque-medeiros-de-moura-941644152"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://github.com/lucasmoura"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><em>Another variable in the Deep Learning hyperspace</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Automatic Star Rating for Movie Reviews Part 2</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2018-01-31T20:46:57-02:00">Jan 31, 2018</time>
+        </li>
+        
+        
+
+        
+
+        <li>6 min read</li>
+    </ul>
+</aside>
+    
+
+    
+
+<p>In the previous part of this series, I presented the Dataset of movie reviews I
+have gatheres and analyzed it a little. Now it is time to train a model using
+it. The first model I tried is a
+<a href="https://en.wikipedia.org/wiki/Bag-of-words_model">Bag Of Words</a> model, as can
+be seen on the following picture.</p>
+
+<p><img src="/automatic-star-rating-for-movie-reviews-part-2/bag_of_words.png" alt="image alt text" /></p>
+
+<p>In the above image, we can see that the model receives an array of word-ids.
+An id represents a unique word that can be found on a movie review.
+This means that a film review is converted into a list of word-ids before being fed to the model</p>
+
+<p>The first step of this network is turning each word-id into an embedding array using an
+<a href="https://en.wikipedia.org/wiki/Word_embedding">Word Embedding</a> matrix. This matrix has V rows and D
+columns, where V is the size of vocabulary (number of unique words that can be found on the
+reviews) and D is the dimension size of the embedding. Therefore, each row in the matrix represents
+a different word in the vocabulary, meaning that each word-id in the input represents a distinct
+row in the Embedding matrix.</p>
+
+<p>After turning each id into an array of size D, we sum all of these arrays and
+average them, turning the whole movie review into an array of size 1 X D. This
+array is then fed into a neural network model, which output the probability of
+the movie belonging to any of the possible 5 star ratings.</p>
+
+<h2 id="data-preprocessing">Data Preprocessing</h2>
+
+<p>Every review is turned into a list of word-ids before being fed to the
+model. Before making that conversion, I have applied two distinct preprocessing
+techniques. The first one is tokenisation, which means that I have turned the
+film review into a list of tokens, where a token is a word. For example, the
+word &ldquo;good!!!&rdquo; would be turned into the following list of tokens [&ldquo;good&rdquo;,
+&ldquo;!&rdquo;, &ldquo;!&rdquo;, &ldquo;!]. After that, I remove common Portuguese
+<a href="https://gist.github.com/alopes/5358189">stop words</a>, since I am using the
+Bag Of Words technique.</p>
+
+<p>Finally, each token is converted into a word-id. This is achieved by loading a pre-trained
+Embedding matrix and verifying if that token can be found in the matrix. If that is the case, I
+assign the row of the Embedding matrix that represents this word as its word-id.</p>
+
+<h2 id="word-embeddings">Word Embeddings</h2>
+
+<p>I have chosen the pre-trained Embeddings from <a href="https://fasttext.cc/">fastText</a>
+to use in my model. The reason behind that is that fastText provide Portuguese Embeddings and uses
+subword information to train the Embeddings. This means that the model is trained based on the
+words itself and the ngrams that compose them. Since they are also training ngrams Embeddings, we
+can use this Embeddings to create Embedding arrays for words the model has never seen. To achieve
+that, we break the word into its ngrams and combine the embeddings of the individuals ngrams into
+the word Embedding array.</p>
+
+<p>Therefore, when we turn the training data into a list of tokens, we guarantee
+that all tokens in the training data have a valid word-id. However, since we just use the training
+set to create the word-ids, there may be words that appear in the
+validation/test set that do not have a valid word-id. In that case, we turn this
+word into a unknown word-id, that maps to an Embedding array containing only zeros.</p>
+
+<h2 id="dataset-splits">Dataset splits</h2>
+
+<p>Every review source (Omelete, Cineclick and Cinema Em Cena) has been divided into a 5 categories.
+Each category represents a movie rating and stores all movies with that rating.</p>
+
+<p>After that, I have removed 20% of the data from each of these categories. 50% of this data is used
+as validation data and the other half for test data. This ensures that both validation and test
+sets possess a full range of ratings. The 80% remaining data is used as training data.</p>
+
+<p>Once that separation is completed, I create 5 distinct datasets:</p>
+
+<ul>
+<li><strong>Full</strong>: A dataset that combines the training dataset of all data sources, as
+well as combining the dataset for both the validation and test dataset.</li>
+<li><strong>Full (undersampling)</strong>: Similar to <strong>Full</strong>, but I have applied the
+<a href="https://en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis">undersampling</a>
+technique to guarantee that all ratings in the training dataset have the same
+amount of data. This is not true to the validation and test dataset.</li>
+<li><strong>Omelete</strong>: A dataset all train, validation and test comes uniquely from
+Omelete reviews.</li>
+<li><strong>Cineclick</strong>: A dataset all train, validation and test comes uniquely from
+Cineclick reviews.</li>
+<li><strong>Cec</strong>: A dataset all train, validation and test comes uniquely from
+Cinema Em Cena reviews.</li>
+</ul>
+
+<p>I have not used the undersampling technique for <strong>Omelete</strong>, <strong>Cineclick</strong> and
+<strong>Cec</strong> because the training dataset generated would be too small for training the
+model.</p>
+
+<h2 id="model-definitions">Model definitions</h2>
+
+<p>I have trained two distinct Bag Of Words models to handle this task. The first
+model, is a Neural Network with no hidden layers, which I call <strong>bownh</strong>.
+The second model has a hidden layer with 150 units, which I call
+<strong>bowsh</strong>.</p>
+
+<p>Both models were trained for 15 epochs. Hyper-parameters configuration was done
+using the validation dataset, leading to the following choices:</p>
+
+<ul>
+<li><strong>Optimization</strong>: <a href="https://arxiv.org/abs/1412.6980">Adam</a> algorithm with an initial learning rate
+of 0.001. Stochastic Gradient Descent (SGD) was also used, with a batch size of 32.</li>
+<li><strong>Regularization</strong>: L2 regularization with weight
+decay of 0.001 and dropout on each layer, with keep probability of 0.5.</li>
+</ul>
+
+<p>Finally, I have used <a href="https://www.tensorflow.org/programmers_guide/estimators">TensorFlow Estimator
+API</a> to implement both
+of these models.</p>
+
+<h2 id="model-results">Model results</h2>
+
+<p>The model with greatest accuracy was the <strong>bownh</strong>
+using the  <strong>Full</strong> dataset. This model achieves 46.72%
+accuracy for the test set. However, since we are dealing with an unbalanced
+dataset, the accuracy metric can be misleading. We can look at the confusion
+matrix produced by the model to better understand this metric:</p>
+
+<p><img src="/automatic-star-rating-for-movie-reviews-part-2/best_confusion_matrix.png" alt="image alt text" /></p>
+
+<p>We can see that the model is doing really good on performing predictions for
+both 3 and 4 ratings. However as our data analysis in the past post has
+demonstrated, we have more review being rated with 3 and 4 stars then others.
+However, we can see that the mistakes the model is doing are not that absurd.
+For example, most of the wrong predictions for 5 star rating movies is on
+classifying them as 4 stars, which is not absurd. This behavior of
+misclassifying review for the nearest rating can be seen over all classes.</p>
+
+<p>The next best model is the <strong>bownh</strong> using the <strong>Full (undersampling)</strong> dataset.
+This model achieves an accuracy of 38.75% and has produced the following
+confusion matrix:</p>
+
+<p><img src="/automatic-star-rating-for-movie-reviews-part-2/undersampling_confusion_matrix.png" alt="image alt text" /></p>
+
+<p>Although this model has a worst accuracy, it produces best accuracies for least
+represented ratings, such as 1 and 5 star reviews.
+In my opinion, this ability makes this model superior the
+model with best accuracy. This makes me believe that the undersampling strategy was partly
+successful on generating better predictions for the mode, but can still be
+improved.</p>
+
+<h2 id="results-for-single-source-datasets">Results for Single Source Datasets</h2>
+
+<p>When using these models on single source datasets(<strong>Omelete</strong>, <strong>Cineclick</strong> and
+<strong>Cec</strong>), the results are not very positive. For both Bag Of Word models
+we have confusion matrices with this pattern:</p>
+
+<p><img src="/automatic-star-rating-for-movie-reviews-part-2/single_source_confusion_matrix.png" alt="image alt text" /></p>
+
+<p><em>Confusion matrix generated from bownh using the Omelete dataset</em></p>
+
+<p>We can see that the model is not making many different predictions,
+concentrating the predictions for 3 and 4 rating while ignoring the rest of the
+possible ratings.</p>
+
+<h2 id="next-steps">Next steps</h2>
+
+<p>I have seen that the small and unbalanced dataset will be a real problem and
+that the Bag Of Words model is not enough to handle the data. However, I have
+established a baseline that can be used for comparison reasons, when I develop
+new models. Therefore, in my next post I will focus on better techniques to handle this dataset
+while also exploring new and more complex model architectures, for example,
+Recurrent Neural Networks. Keep tuned for more :)</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://lucasmoura.github.io/blog/2018/01/05/automatic-star-rating-for-movie-reviews---part-1/"><i class="fa fa-chevron-circle-left"></i> Automatic Star Rating for Movie Reviews - Part 1</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments-o"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'https-lucasmoura-github-io';
+            var disqus_button = document.getElementById("show-comments");
+
+            disqus_button.style.display = "";
+            disqus_button.addEventListener("click", disqus, false);
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://lucasmoura.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+</body>
+
+</html>
