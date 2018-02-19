@@ -6,10 +6,21 @@
     <description>Recent content in Posts on lucasmoura&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 31 Jan 2018 20:46:57 -0200</lastBuildDate>
+    <lastBuildDate>Mon, 19 Feb 2018 14:32:41 -0300</lastBuildDate>
     
 	<atom:link href="https://lucasmoura.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Automatic Star Rating for Movie Reviews Part 3</title>
+      <link>https://lucasmoura.github.io/blog/2018/02/19/automatic-star-rating-for-movie-reviews-part-3/</link>
+      <pubDate>Mon, 19 Feb 2018 14:32:41 -0300</pubDate>
+      
+      <guid>https://lucasmoura.github.io/blog/2018/02/19/automatic-star-rating-for-movie-reviews-part-3/</guid>
+      <description>In the previous part of this series, I created a Bag Of Words model to classify the reviews. In this part I will present two other models I have implemented, a Recurrent and Convolutional model.
+Data Preprocessing For both new models, I have used the same preprocessing approach as the Bag Of Words model, except that the stop words are not removed from the reviews.
+The Recurrent Model The recurrent model is Recurrent Neural Network that reads the entire review, generating a final vector representation of the text that is then used to perform the classification over the 5 possible star ratings.</description>
+    </item>
     
     <item>
       <title>Automatic Star Rating for Movie Reviews Part 2</title>
