@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="The HTML5 Herald" />
   <meta name="author" content="Lucas Moura" />
-  <meta name="generator" content="Hugo 0.26" />
+  <meta name="generator" content="Hugo 0.39" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
@@ -83,63 +83,61 @@ Therefore, by allowing software centers to display recommendations to its users,
 a new kind of user would be covered by AppRecommender.</p>
 
 <p>With that said, this is the representation of the 0ad component on AppStream:</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">&lt;component</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;desktop&quot;</span><span style="color: #f92672">&gt;</span>
-    <span style="color: #f92672">&lt;id&gt;</span>0ad.desktop<span style="color: #f92672">&lt;/id&gt;</span>
-    <span style="color: #f92672">&lt;pkgname&gt;</span>0ad<span style="color: #f92672">&lt;/pkgname&gt;</span>
-    <span style="color: #f92672">&lt;name&gt;</span>0 A.D.<span style="color: #f92672">&lt;/name&gt;</span>
-    <span style="color: #f92672">&lt;summary&gt;</span>A real-time strategy game of ancient warfare<span style="color: #f92672">&lt;/summary&gt;</span>
-    <span style="color: #f92672">&lt;summary</span> <span style="color: #a6e22e">xml:lang=</span><span style="color: #e6db74">&quot;it&quot;</span><span style="color: #f92672">&gt;</span>Videogioco strategico in tempo reale di guerre
-    antiche<span style="color: #f92672">&lt;/summary&gt;</span>
-    <span style="color: #f92672">&lt;icon</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;cached&quot;</span><span style="color: #f92672">&gt;</span>0ad.png<span style="color: #f92672">&lt;/icon&gt;</span>
-    <span style="color: #f92672">&lt;categories&gt;</span>
-      <span style="color: #f92672">&lt;category&gt;</span>Game<span style="color: #f92672">&lt;/category&gt;</span>
-      <span style="color: #f92672">&lt;category&gt;</span>StrategyGame<span style="color: #f92672">&lt;/category&gt;</span>
-    <span style="color: #f92672">&lt;/categories&gt;</span>
-  <span style="color: #f92672">&lt;/component&gt;</span>
-  <span style="color: #f92672">&lt;component</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;desktop&quot;</span><span style="color: #f92672">&gt;</span>
-    <span style="color: #f92672">&lt;id&gt;</span>0install.desktop<span style="color: #f92672">&lt;/id&gt;</span>
-    <span style="color: #f92672">&lt;pkgname&gt;</span>0install-core<span style="color: #f92672">&lt;/pkgname&gt;</span>
-    <span style="color: #f92672">&lt;name&gt;</span>0install<span style="color: #f92672">&lt;/name&gt;</span>
-    <span style="color: #f92672">&lt;summary&gt;</span>Run or manage Zero Install programs<span style="color: #f92672">&lt;/summary&gt;</span>
-    <span style="color: #f92672">&lt;summary</span> <span style="color: #a6e22e">xml:lang=</span><span style="color: #e6db74">&quot;es&quot;</span><span style="color: #f92672">&gt;</span>Actualiza o quita programas de tu menú
-    Aplicaciones<span style="color: #f92672">&lt;/summary&gt;</span>
-    <span style="color: #f92672">&lt;summary</span> <span style="color: #a6e22e">xml:lang=</span><span style="color: #e6db74">&quot;sv&quot;</span><span style="color: #f92672">&gt;</span>Uppdatera eller ta bort Zero Install-program i
-    menyn Program<span style="color: #f92672">&lt;/summary&gt;</span>
-    <span style="color: #f92672">&lt;description&gt;&lt;p&gt;</span>Zero Install is a decentralised cross-distribution
-    software installation system.<span style="color: #f92672">&lt;/p&gt;&lt;p&gt;</span>Features include full support for
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;component</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;desktop&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;id&gt;</span>0ad.desktop<span style="color:#f92672">&lt;/id&gt;</span>
+    <span style="color:#f92672">&lt;pkgname&gt;</span>0ad<span style="color:#f92672">&lt;/pkgname&gt;</span>
+    <span style="color:#f92672">&lt;name&gt;</span>0 A.D.<span style="color:#f92672">&lt;/name&gt;</span>
+    <span style="color:#f92672">&lt;summary&gt;</span>A real-time strategy game of ancient warfare<span style="color:#f92672">&lt;/summary&gt;</span>
+    <span style="color:#f92672">&lt;summary</span> <span style="color:#a6e22e">xml:lang=</span><span style="color:#e6db74">&#34;it&#34;</span><span style="color:#f92672">&gt;</span>Videogioco strategico in tempo reale di guerre
+    antiche<span style="color:#f92672">&lt;/summary&gt;</span>
+    <span style="color:#f92672">&lt;icon</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;cached&#34;</span><span style="color:#f92672">&gt;</span>0ad.png<span style="color:#f92672">&lt;/icon&gt;</span>
+    <span style="color:#f92672">&lt;categories&gt;</span>
+      <span style="color:#f92672">&lt;category&gt;</span>Game<span style="color:#f92672">&lt;/category&gt;</span>
+      <span style="color:#f92672">&lt;category&gt;</span>StrategyGame<span style="color:#f92672">&lt;/category&gt;</span>
+    <span style="color:#f92672">&lt;/categories&gt;</span>
+  <span style="color:#f92672">&lt;/component&gt;</span>
+  <span style="color:#f92672">&lt;component</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;desktop&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;id&gt;</span>0install.desktop<span style="color:#f92672">&lt;/id&gt;</span>
+    <span style="color:#f92672">&lt;pkgname&gt;</span>0install-core<span style="color:#f92672">&lt;/pkgname&gt;</span>
+    <span style="color:#f92672">&lt;name&gt;</span>0install<span style="color:#f92672">&lt;/name&gt;</span>
+    <span style="color:#f92672">&lt;summary&gt;</span>Run or manage Zero Install programs<span style="color:#f92672">&lt;/summary&gt;</span>
+    <span style="color:#f92672">&lt;summary</span> <span style="color:#a6e22e">xml:lang=</span><span style="color:#e6db74">&#34;es&#34;</span><span style="color:#f92672">&gt;</span>Actualiza o quita programas de tu menú
+    Aplicaciones<span style="color:#f92672">&lt;/summary&gt;</span>
+    <span style="color:#f92672">&lt;summary</span> <span style="color:#a6e22e">xml:lang=</span><span style="color:#e6db74">&#34;sv&#34;</span><span style="color:#f92672">&gt;</span>Uppdatera eller ta bort Zero Install-program i
+    menyn Program<span style="color:#f92672">&lt;/summary&gt;</span>
+    <span style="color:#f92672">&lt;description&gt;&lt;p&gt;</span>Zero Install is a decentralised cross-distribution
+    software installation system.<span style="color:#f92672">&lt;/p&gt;&lt;p&gt;</span>Features include full support for
     shared libraries (with a SAT solver for dependency resolution), sharing
     between users, and       integration with native platform package
-    managers.<span style="color: #f92672">&lt;/p&gt;&lt;p&gt;</span>It supports both binary and source packages, and works on
+    managers.<span style="color:#f92672">&lt;/p&gt;&lt;p&gt;</span>It supports both binary and source packages, and works on
     Linux, OS X, Unix and Windows systems. It is fully Open
-    Source.<span style="color: #f92672">&lt;/p&gt;&lt;/description&gt;</span>
-    <span style="color: #f92672">&lt;icon</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;cached&quot;</span><span style="color: #f92672">&gt;</span>0install.png<span style="color: #f92672">&lt;/icon&gt;</span>
-    <span style="color: #f92672">&lt;categories&gt;</span>
-      <span style="color: #f92672">&lt;category&gt;</span>PackageManager<span style="color: #f92672">&lt;/category&gt;</span>
-      <span style="color: #f92672">&lt;category&gt;</span>Settings<span style="color: #f92672">&lt;/category&gt;</span>
-      <span style="color: #f92672">&lt;category&gt;</span>System<span style="color: #f92672">&lt;/category&gt;</span>
-      <span style="color: #f92672">&lt;category&gt;</span>Utility<span style="color: #f92672">&lt;/category&gt;</span>
-    <span style="color: #f92672">&lt;/categories&gt;</span>
-    <span style="color: #f92672">&lt;url</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;homepage&quot;</span><span style="color: #f92672">&gt;</span>http://0install.net<span style="color: #f92672">&lt;/url&gt;</span>
-    <span style="color: #f92672">&lt;screenshots&gt;</span>
-      <span style="color: #f92672">&lt;screenshot</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;default&quot;</span><span style="color: #f92672">&gt;</span>
-        <span style="color: #f92672">&lt;image</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;source&quot;</span> <span style="color: #a6e22e">height=</span><span style="color: #e6db74">&quot;351&quot;</span>
-        <span style="color: #a6e22e">width=</span><span style="color: #e6db74">&quot;624&quot;</span><span style="color: #f92672">&gt;</span>http://people.freedesktop.org/~mak/appstream/debian/screenshots/source/0install-22aeb5e8b09a96f2df0d3a8f79567aeb.png<span style="color: #f92672">&lt;/image&gt;</span>
-        <span style="color: #f92672">&lt;image</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;thumbnail&quot;</span> <span style="color: #a6e22e">height=</span><span style="color: #e6db74">&quot;351&quot;</span>
-        <span style="color: #a6e22e">width=</span><span style="color: #e6db74">&quot;624&quot;</span><span style="color: #f92672">&gt;</span>http://people.freedesktop.org/~mak/appstream/debian/screenshots/624x351/0install-22aeb5e8b09a96f2df0d3a8f79567aeb.png<span style="color: #f92672">&lt;/image&gt;</span>
-        <span style="color: #f92672">&lt;image</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;thumbnail&quot;</span> <span style="color: #a6e22e">height=</span><span style="color: #e6db74">&quot;63&quot;</span>
-        <span style="color: #a6e22e">width=</span><span style="color: #e6db74">&quot;112&quot;</span><span style="color: #f92672">&gt;</span>http://people.freedesktop.org/~mak/appstream/debian/screenshots/112x63/0install-22aeb5e8b09a96f2df0d3a8f79567aeb.png<span style="color: #f92672">&lt;/image&gt;</span>
-        <span style="color: #f92672">&lt;image</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;thumbnail&quot;</span> <span style="color: #a6e22e">height=</span><span style="color: #e6db74">&quot;423&quot;</span>
-        <span style="color: #a6e22e">width=</span><span style="color: #e6db74">&quot;752&quot;</span><span style="color: #f92672">&gt;</span>http://people.freedesktop.org/~mak/appstream/debian/screenshots/752x423/0install-22aeb5e8b09a96f2df0d3a8f79567aeb.png<span style="color: #f92672">&lt;/image&gt;</span>
-      <span style="color: #f92672">&lt;/screenshot&gt;</span>
-    <span style="color: #f92672">&lt;/screenshots&gt;</span>
-    <span style="color: #f92672">&lt;languages&gt;</span>
-      <span style="color: #f92672">&lt;lang</span> <span style="color: #a6e22e">percentage=</span><span style="color: #e6db74">&quot;88&quot;</span><span style="color: #f92672">&gt;</span>de<span style="color: #f92672">&lt;/lang&gt;</span>
-      <span style="color: #f92672">&lt;lang</span> <span style="color: #a6e22e">percentage=</span><span style="color: #e6db74">&quot;63&quot;</span><span style="color: #f92672">&gt;</span>es<span style="color: #f92672">&lt;/lang&gt;</span>
-      <span style="color: #f92672">&lt;lang</span> <span style="color: #a6e22e">percentage=</span><span style="color: #e6db74">&quot;100&quot;</span><span style="color: #f92672">&gt;</span>sv<span style="color: #f92672">&lt;/lang&gt;</span>
-    <span style="color: #f92672">&lt;/languages&gt;</span>
-  <span style="color: #f92672">&lt;/component&gt;</span>
-</pre></div>
-
+    Source.<span style="color:#f92672">&lt;/p&gt;&lt;/description&gt;</span>
+    <span style="color:#f92672">&lt;icon</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;cached&#34;</span><span style="color:#f92672">&gt;</span>0install.png<span style="color:#f92672">&lt;/icon&gt;</span>
+    <span style="color:#f92672">&lt;categories&gt;</span>
+      <span style="color:#f92672">&lt;category&gt;</span>PackageManager<span style="color:#f92672">&lt;/category&gt;</span>
+      <span style="color:#f92672">&lt;category&gt;</span>Settings<span style="color:#f92672">&lt;/category&gt;</span>
+      <span style="color:#f92672">&lt;category&gt;</span>System<span style="color:#f92672">&lt;/category&gt;</span>
+      <span style="color:#f92672">&lt;category&gt;</span>Utility<span style="color:#f92672">&lt;/category&gt;</span>
+    <span style="color:#f92672">&lt;/categories&gt;</span>
+    <span style="color:#f92672">&lt;url</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;homepage&#34;</span><span style="color:#f92672">&gt;</span>http://0install.net<span style="color:#f92672">&lt;/url&gt;</span>
+    <span style="color:#f92672">&lt;screenshots&gt;</span>
+      <span style="color:#f92672">&lt;screenshot</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;default&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;image</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;source&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;351&#34;</span>
+        <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;624&#34;</span><span style="color:#f92672">&gt;</span>http://people.freedesktop.org/~mak/appstream/debian/screenshots/source/0install-22aeb5e8b09a96f2df0d3a8f79567aeb.png<span style="color:#f92672">&lt;/image&gt;</span>
+        <span style="color:#f92672">&lt;image</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;thumbnail&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;351&#34;</span>
+        <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;624&#34;</span><span style="color:#f92672">&gt;</span>http://people.freedesktop.org/~mak/appstream/debian/screenshots/624x351/0install-22aeb5e8b09a96f2df0d3a8f79567aeb.png<span style="color:#f92672">&lt;/image&gt;</span>
+        <span style="color:#f92672">&lt;image</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;thumbnail&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;63&#34;</span>
+        <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;112&#34;</span><span style="color:#f92672">&gt;</span>http://people.freedesktop.org/~mak/appstream/debian/screenshots/112x63/0install-22aeb5e8b09a96f2df0d3a8f79567aeb.png<span style="color:#f92672">&lt;/image&gt;</span>
+        <span style="color:#f92672">&lt;image</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;thumbnail&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;423&#34;</span>
+        <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;752&#34;</span><span style="color:#f92672">&gt;</span>http://people.freedesktop.org/~mak/appstream/debian/screenshots/752x423/0install-22aeb5e8b09a96f2df0d3a8f79567aeb.png<span style="color:#f92672">&lt;/image&gt;</span>
+      <span style="color:#f92672">&lt;/screenshot&gt;</span>
+    <span style="color:#f92672">&lt;/screenshots&gt;</span>
+    <span style="color:#f92672">&lt;languages&gt;</span>
+      <span style="color:#f92672">&lt;lang</span> <span style="color:#a6e22e">percentage=</span><span style="color:#e6db74">&#34;88&#34;</span><span style="color:#f92672">&gt;</span>de<span style="color:#f92672">&lt;/lang&gt;</span>
+      <span style="color:#f92672">&lt;lang</span> <span style="color:#a6e22e">percentage=</span><span style="color:#e6db74">&#34;63&#34;</span><span style="color:#f92672">&gt;</span>es<span style="color:#f92672">&lt;/lang&gt;</span>
+      <span style="color:#f92672">&lt;lang</span> <span style="color:#a6e22e">percentage=</span><span style="color:#e6db74">&#34;100&#34;</span><span style="color:#f92672">&gt;</span>sv<span style="color:#f92672">&lt;/lang&gt;</span>
+    <span style="color:#f92672">&lt;/languages&gt;</span>
+  <span style="color:#f92672">&lt;/component&gt;</span></code></pre></div>
 <p>With that idea in mind, I have been discussing with AppStream maintainers
 about this idea for quite some time. I have tried to implement some approaches, but
 so far, most of them are flawed. However, during DebConf I was able to talk
@@ -151,16 +149,14 @@ that would indicate which recommendation where generated by that component. For
 example, given that the user has vim and git installed and AppRecommender
 recommends vim-fugitive, the vim component would have the following
 tag:</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">&lt;component</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;desktop&quot;</span><span style="color: #f92672">&gt;</span>
-    <span style="color: #f92672">&lt;id&gt;</span>vim.desktop<span style="color: #f92672">&lt;/id&gt;</span>
-    <span style="color: #f92672">&lt;pkgname&gt;</span>vim<span style="color: #f92672">&lt;/pkgname&gt;</span>
-    <span style="color: #f92672">&lt;name&gt;</span>Vim<span style="color: #f92672">&lt;/name&gt;</span>
-    <span style="color: #f92672">&lt;suggests</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;heuristic&quot;</span><span style="color: #f92672">&gt;</span>
-      <span style="color: #f92672">&lt;id&gt;</span>vim-fugitive.desktop<span style="color: #f92672">&lt;/id&gt;</span>
-    <span style="color: #f92672">&lt;/suggests&gt;</span>
-<span style="color: #f92672">&lt;/component&gt;</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;component</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;desktop&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;id&gt;</span>vim.desktop<span style="color:#f92672">&lt;/id&gt;</span>
+    <span style="color:#f92672">&lt;pkgname&gt;</span>vim<span style="color:#f92672">&lt;/pkgname&gt;</span>
+    <span style="color:#f92672">&lt;name&gt;</span>Vim<span style="color:#f92672">&lt;/name&gt;</span>
+    <span style="color:#f92672">&lt;suggests</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;heuristic&#34;</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;id&gt;</span>vim-fugitive.desktop<span style="color:#f92672">&lt;/id&gt;</span>
+    <span style="color:#f92672">&lt;/suggests&gt;</span>
+<span style="color:#f92672">&lt;/component&gt;</span></code></pre></div>
 <p>Although a recommendation in AppRecommender is generated by a combination of
 user packages and not a single package, this approach may still work.
 That is because one of the strategies that will
