@@ -1,0 +1,259 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>lucasmoura&#39;s blog</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Lucas Moura" />
+  <meta name="generator" content="Hugo 0.40.3" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">lucasmoura&rsquo;s blog</a>
+            </h1>
+
+      <ul id="social-media">
+         
+        <li><a href="https://www.linkedin.com/in/lucas-albuquerque-medeiros-de-moura-941644152"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://github.com/lucasmoura"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><em>Another variable in the Deep Learning hyperspace</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Funk Generator</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2018-05-07T16:47:11-03:00">May 7, 2018</time>
+        </li>
+        
+        
+
+        
+
+        <li>5 min read</li>
+    </ul>
+</aside>
+    
+
+    
+
+<p>This post describes a language model that I have created for generating funk
+lyrics. This is a popular music genre in Brazil, I have created a medium post in
+portuguese describing the process of collecting the data and generating the
+songs. Therefore, my motivation in this posts is to explain how I created this
+model and discuss some decisions I have made during the development of this
+project.</p>
+
+<h2 id="word-embeddings">Word Embeddings</h2>
+
+<p>I have not used any portuguese pre-trained word embedding for this problem. The
+main rationale behind this decisions is that most portuguese word embeddings
+that I know are trained with the wikipedia corpus. Although they provide a rich
+set of words and context for those words, I don&rsquo;t believe they would make my
+model significantly better. The reason for that is that my main source of
+information, the funk lyrics, are vastly different than wikipedia
+articles. Therefore, I have not used pre-trained embeddings, but I have not
+excluded this option from future experiments.</p>
+
+<h2 id="input-formatting">Input formatting</h2>
+
+<p>I removed all punctuation and words that not appear at least 5 times in my
+dataset from my dataset. Furthermore, I split the songs into chunks of 32 words,
+and I have used these chunks as the training data of my model.</p>
+
+<p>Additionally, I have added special tokens in the beginning and ending of my
+songs, while replacing any word that doesn&rsquo;t appear in my vocabulary for a token
+representing an unknown word.</p>
+
+<h2 id="model">Model</h2>
+
+<p>I have used a Recurrent Neural Network (RNN) to train the model with an LSTM cell for
+generating the state vector of the RNN. I have stacked 3 of this layers
+together, where each layer has 728 units.</p>
+
+<p>Furthermore I have used dropout for regularizing my network. I have applied
+dropout to the recurrent step of my network, using the variational recurrent
+dropout technique [1], and I have applied dropout to the output of my RNNs.
+Also, I have applied dropout to the embeddings matrix as well, as stated in the
+variational dropout paper [1]. I have used the value of 0.5 as the probability
+mask for the described dropout approaches.</p>
+
+<p>I have also tried to use L2 regularization in my model, but I have found that it
+added a heavy burden on the model capacity, so I decided to remove that type of
+regularization.</p>
+
+<p>Finally, I have used the weight tying technique [2] to remove the necessity of
+maintaining two distinct embedding matrices in my model.</p>
+
+<h2 id="model-validation">Model validation</h2>
+
+<p>I have decided not to use a validation or a test set for this task. The main
+reason behind that initially, when I used a validation and test set, I was
+looking at the perplexity metric to understand if my model was overfitting.
+However, I realized that this metric did not have a good correlation with the
+songs my model was generating. Meaning that the quality of my songs was not
+getting better if my perplexity value was decreasing. I realized that using the
+whole dataset to train the model achieved a better overall quality of the songs
+being produced.</p>
+
+<p>However, I must add that using the validation and test set was a really good
+choice on the first steps of the project, since I used these sets to define the
+number of RNN to use, the size of units in these networks, and that L2
+regularization was not giving me benefits.</p>
+
+<p>Finally, I must add that the way I was evaluating if a song was good or not was
+totally subjective. I believe this a problem, since this made my decision making
+problem a lot harder in this project. If I start any language modelling problem
+again, I will invest a great deal of time on this subject, to understand a
+better way to evaluate sentences generated by the model.</p>
+
+<h2 id="production">Production</h2>
+
+<p>Since I wanted to deploy this model in production, I have considered using
+TensorFlow Serving[3] for this task. However, I realized that this not an
+appropriate choice for this task, since I would need to generate a number of
+requests for the server, in order to keep generating new words, which was not
+ideal.</p>
+
+<p>Therefore, I have created a docker container using both flask and gunicorn to
+serve the application. Although the contained I have generated is really big
+(more that 1.5g), I think that this will not be a major problem, since I am not
+aiming at scalability here. However, using external volumes for the model
+checkpoint, instead of including it in the container should provide a better
+alternative than the one I took.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>This was I really hard problem for me to solve. Not only collecting the data
+took a lot of time, my decision making process was not as good as it seems. I
+believe that this project, although successful, made me realize some problems in
+using Deep Learning with Natural Language Processing, which is that finding the
+right metric to optimize is a real difficult task.</p>
+
+<p>But with that difficult I am now motivated to further research into this topic
+and better understand how other people or research groups have handled this
+issue.</p>
+
+<h2 id="referências">Referências</h2>
+
+<ul>
+<li><a href="https://arxiv.org/abs/1512.05287">1: Variational Dropout for RNNs</a></li>
+<li><a href="https://arxiv.org/abs/1608.05859">2: Weight Tying</a></li>
+<li><a href="https://www.tensorflow.org/serving/">3: TensorFlow Serving</a></li>
+</ul>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://lucasmoura.github.io/blog/2018/02/19/automatic-star-rating-for-movie-reviews-part-3/"><i class="fa fa-chevron-circle-left"></i> Automatic Star Rating for Movie Reviews Part 3</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments-o"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'https-lucasmoura-github-io';
+            var disqus_button = document.getElementById("show-comments");
+
+            disqus_button.style.display = "";
+            disqus_button.addEventListener("click", disqus, false);
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://lucasmoura.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+</body>
+
+</html>

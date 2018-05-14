@@ -6,10 +6,20 @@
     <description>Recent content on lucasmoura&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Feb 2018 14:32:41 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 07 May 2018 16:47:11 -0300</lastBuildDate>
     
 	<atom:link href="https://lucasmoura.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Funk Generator</title>
+      <link>https://lucasmoura.github.io/blog/2018/05/07/funk-generator/</link>
+      <pubDate>Mon, 07 May 2018 16:47:11 -0300</pubDate>
+      
+      <guid>https://lucasmoura.github.io/blog/2018/05/07/funk-generator/</guid>
+      <description>This post describes a language model that I have created for generating funk lyrics. This is a popular music genre in Brazil, I have created a medium post in portuguese describing the process of collecting the data and generating the songs. Therefore, my motivation in this posts is to explain how I created this model and discuss some decisions I have made during the development of this project.
+Word Embeddings I have not used any portuguese pre-trained word embedding for this problem.</description>
+    </item>
     
     <item>
       <title>Automatic Star Rating for Movie Reviews Part 3</title>
